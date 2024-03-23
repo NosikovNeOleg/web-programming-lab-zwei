@@ -1,16 +1,32 @@
 <script setup>
-// Эта часть выполняется при первоначальной загрузке компонента
+import TodoElement from './TodoElement.vue'
 </script>
 <template>
 <!--Здесь представление компонента (код на HTML)-->
 <main>
-    <h2>Мой список дел</h2>
+        <h2>Мой список дел</h2>
+        <ul id="todoList">
+            <li v-for="todo,index in todos">
+              <component :is="TodoElement"/>
+            </li>
+        </ul>
+        
+        <button class="btn btn-primary" @click="methods.addTodo()">Добавить задачу</button>
+    </main>
     
-
-
-    <button class="">Добавить задачу</button>
-</main>
 </template>
 <script>
-// Здесь исходный код компонента
-</script>
+    export default {
+      data() {
+        return {
+            newItem : TodoElement,
+            todos: [],
+            methods: {
+                addTodo: () =>  {
+                    this.todos.push(this.newItem);
+                }
+            }
+        }
+        }
+    }
+    </script>

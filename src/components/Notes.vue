@@ -2,30 +2,34 @@
 import Note from './Note.vue'
 </script>
 <template>
-<!--Здесь представление компонента (код на HTML)-->
-<main>
+  <main>
     <h2>Мои заметки</h2>
     <ul id="notesList">
-        <li v-for="note,index in notes">
-          <component :is="Note" />
-		</li>
+      <li v-for="note,index in notes">
+        <note :index="index" :selfRemove="methods.removeNote"/>
+      </li>
     </ul>
-    
+
     <button class="btn btn-primary" @click="methods.addNote()">Добавить заметку</button>
-</main>
+  </main>
 </template>
 <script>
 export default {
   data() {
     return {
-        newItem : Note,
-        notes: [],
-        methods: {
-            addNote: () =>  {
-		        this.notes.push(this.newItem);
-	        }
+      newItem: null,
+      notes: [],
+      methods: {
+        addNote: () => {
+            this.newItem = Note
+            this.notes.push(this.newItem);
+        },
+        removeNote: (index) => {
+          console.log(index)
+          this.notes.splice(index,1)
         }
+      }
     }
-    }
+  }
 }
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-    const props = defineProps(["elemName", "tempElem", "closeModal", "deleteFromModal"])
+    const props = defineProps(["elemName", "elem", "closeModal", "deleteFromModal"])
 </script>
 <template>
     <!-- Modal -->
@@ -11,11 +11,11 @@
                             <button type="button" class="btn-close" aria-label="Close" @click="closeModal"></button>
                         </div>
                         <div class="modal-body">
-                            Вы действительно хотите удалить {{ elemName }} - {{ tempElem.noteText }}?
+                            Вы действительно хотите удалить {{ elemName }} - {{ elem.noteText }}?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="closeModal">Отмена</button>
-                            <button type="button" class="btn btn-primary" @click="deleteFromModal(tempElem)">Удалить</button>
+                            <button type="button" class="btn btn-primary" @click="deleteFromModal(elem)">Удалить</button>
                         </div>
                     </div>
                 </div>

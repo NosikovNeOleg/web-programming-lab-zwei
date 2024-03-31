@@ -6,7 +6,7 @@ import DeleteModal from './DeleteModal.vue';
   <main>
     <h2>Мои заметки</h2>
     <ul v-for="note, index in notes" :key="note">
-      <Note :noteElem=note :text=note.text :selfRemove="methods.removeNote"></Note>
+      <Note :noteElem=note :text=note.text :selfRemove="methods.askToDelete"></Note>
     </ul>
 
     <button class="btn btn-primary" @click="methods.addNote()">Добавить заметку</button>
@@ -21,7 +21,7 @@ export default {
       notes: [],
       int: 0,
       modal: null,
-      tempElem: null,
+      tempElem: {},
       methods: {
         addNote: () => {
           this.notes.push((
@@ -33,8 +33,8 @@ export default {
         },
 
         removeNote: (elem) => {
-          this.methods.askToDelete(elem)
           elem.toRemove = true
+          this.modal.hide();
           this.methods.updateNotes()
         },
         updateNotes: () => {
@@ -43,8 +43,9 @@ export default {
           })
         },
         askToDelete: (elem) => {
-          this.modal = new bootstrap.Modal('#delete_modal')
           this.tempElem = elem
+          this.modal = new bootstrap.Modal('#delete_modal')
+          
           this.modal.show()
         },
         closeModal: () => {

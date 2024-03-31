@@ -5,7 +5,7 @@
     <div class="card shadow rounded my-3">
         <div class="row">
             <div class="col-sm-2"><input type="checkbox" :disabled=isEdit></div>
-            <div class="col-8"><input type="text" name="noteText" v-model="noteText" :disabled=!isEdit v-on:change="$props.noteElem.noteText = this.noteText"
+            <div class="col-sm-8"><input type="text" name="noteText" v-model="noteText" :disabled=!isEdit v-on:change="$props.noteElem.noteText = this.noteText"
                     ></div>
             <div class="col-sm-1">
                 <button class="btn btn-warning bi bi-pencil" @click="isEdit = !isEdit" :hidden=isEdit></button>

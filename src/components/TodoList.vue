@@ -6,8 +6,8 @@ import TodoElement from './TodoElement.vue'
     <main>
         <h2>Мой список дел</h2>
         <ul id="todoList">
-            <li v-for="todo, index in todos">
-                <component :is="TodoElement" />
+            <li v-for="todo in todos" :key="todo">
+                <TodoElement :selfRemove="methods.removeTodo" :todoElem="todo"/>
             </li>
         </ul>
 
@@ -19,12 +19,23 @@ import TodoElement from './TodoElement.vue'
 export default {
     data() {
         return {
-            newItem: TodoElement,
             todos: [],
             methods: {
                 addTodo: () => {
-                    this.todos.push(this.newItem);
-                }
+                    this.todos.push({
+                        toRemove: false,
+                        todoText: "Новое дело"
+                    });
+                },
+                removeTodo: (elem) => {
+                    elem.toRemove = true
+                    this.methods.updateTodos()
+                },
+                updateTodos: () => {
+                    this.todos = this.todos.filter((el) => {
+                        return !el.toRemove
+                    })
+                },
             }
         }
     }

@@ -1,32 +1,54 @@
 <script setup>
 import Note from './Note.vue'
+import DeleteModal from './DeleteModal.vue';
 </script>
 <template>
   <main>
     <h2>Мои заметки</h2>
-    <ul id="notesList">
-      <li v-for="note,index in notes">
-        <note :index="index" :selfRemove="methods.removeNote"/>
-      </li>
+    <ul v-for="note, index in notes" :key="note">
+      <Note :noteElem=note :text=note.text :selfRemove="methods.removeNote"></Note>
     </ul>
 
     <button class="btn btn-primary" @click="methods.addNote()">Добавить заметку</button>
+    <DeleteModal :elemName="'заметку'" :elem="tempElem" :closeModal="methods.closeModal" :deleteFromModal="methods.removeNote"></DeleteModal>
+
   </main>
 </template>
 <script>
 export default {
   data() {
     return {
-      newItem: null,
       notes: [],
+      int: 0,
+      modal: null,
+      tempElem: null,
       methods: {
         addNote: () => {
-            this.newItem = Note
-            this.notes.push(this.newItem);
+          this.notes.push((
+            {
+              toRemove: false,
+              noteText: "Новая заметка"
+            }
+          ))
         },
-        removeNote: (index) => {
-          console.log(index)
-          this.notes.splice(index,1)
+
+        removeNote: (elem) => {
+          this.methods.askToDelete(elem)
+          elem.toRemove = true
+          this.methods.updateNotes()
+        },
+        updateNotes: () => {
+          this.notes = this.notes.filter((el) => {
+            return !el.toRemove
+          })
+        },
+        askToDelete: (elem) => {
+          this.modal = new bootstrap.Modal('#delete_modal')
+          this.tempElem = elem
+          this.modal.show()
+        },
+        closeModal: () => {
+          this.modal.hide();
         }
       }
     }

@@ -4,7 +4,7 @@ import * as bootstrap from './assets/bootstrap-5.0.2/js/bootstrap.js'
 </script>
 <template>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="bg-light navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Редактор
                     заметок</a>

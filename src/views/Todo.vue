@@ -5,9 +5,9 @@ import TodoList from '../components/TodoList.vue'
 <template>
     <main class="container">
         <div class="row">
-            <TodoList class="col-md-5"></TodoList>
-            <div class="col-md-2 vr"></div>
-            <Notes class="col-md-5"></Notes>
+            <TodoList class="col-sm-5"></TodoList>
+            <div class="col-sm-2 vr .d-none .d-sm-block"></div>
+            <Notes class="col-sm-5"></Notes>
         </div>
     </main>
 </template>

@@ -5,9 +5,9 @@ import DeleteModal from './DeleteModal.vue';
 <template>
   <main>
     <h2>Мои заметки</h2>
-    <ul v-for="note, index in notes" :key="note">
+    <div v-for="note in notes" :key="note">
       <Note :noteElem=note :text=note.text :selfRemove="methods.askToDelete"></Note>
-    </ul>
+    </div>
 
     <button class="btn btn-primary" @click="methods.addNote()">Добавить заметку</button>
     <DeleteModal :elemName="'заметку'" :elem="tempElem" :closeModal="methods.closeModal" :deleteFromModal="methods.removeNote"></DeleteModal>

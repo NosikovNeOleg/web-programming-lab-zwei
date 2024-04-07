@@ -1,19 +1,15 @@
 <script setup>
-    defineProps(['selfRemove', 'noteElem'])
+defineProps(['selfRemove', 'noteElem'])
 </script>
 <template>
-    <div class="card shadow rounded my-3">
-        <div class="row">
-            <div class="col-sm-2"><input type="checkbox" :disabled=isEdit></div>
-            <div class="col-sm-8"><input type="text" name="noteText" v-model="noteText" :disabled=!isEdit v-on:change="$props.noteElem.noteText = this.noteText"
-                    ></div>
-            <div class="col-sm-1">
-                <button class="btn btn-warning bi bi-pencil" @click="isEdit = !isEdit" :hidden=isEdit></button>
-                <button class="btn btn-success bi bi-check-lg" @click="isEdit = !isEdit" :hidden=!isEdit></button>
-            </div>
-            <div class="col-sm-1"><button class="btn btn-danger bi bi-slash-circle" :disabled=isEdit
-                    @click="selfRemove($props.noteElem)"></button></div>
-        </div>
+    <div class="row shadow rounded my-3">
+        <input class="col-sm-1" type="checkbox" :disabled=isEdit>
+        <textarea class="col-sm"  rows="1" type="text" name="noteText" v-model="noteText" :disabled=!isEdit
+            v-on:change="$props.noteElem.noteText = this.noteText"></textarea>
+        <button class="col-sm-1 btn btn-warning bi-pencil" @click="isEdit = !isEdit" :hidden=isEdit></button>
+        <button class="col-sm-1 btn btn-success bi-check-lg" @click="isEdit = !isEdit" :hidden=!isEdit></button>
+        <button class="col-sm-1 btn btn-danger bi-slash-circle" :disabled=isEdit
+            @click="selfRemove($props.noteElem)"></button>
     </div>
 </template>
 <script>

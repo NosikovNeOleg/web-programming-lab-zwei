@@ -5,11 +5,9 @@ import TodoElement from './TodoElement.vue'
     <!--Здесь представление компонента (код на HTML)-->
     <main>
         <h2>Мой список дел</h2>
-        <ul id="todoList">
-            <li v-for="todo in todos" :key="todo">
+        <div v-for="todo in todos" :key="todo">
                 <TodoElement :selfRemove="methods.removeTodo" :todoElem="todo"/>
-            </li>
-        </ul>
+        </div>
 
         <button class="btn btn-primary" @click="methods.addTodo()">Добавить задачу</button>
     </main>

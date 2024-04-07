@@ -1,0 +1,64 @@
+@import './bootstrap-5.0.2/css/bootstrap.css';
+@import './bootstrap-icons-1.9.1/bootstrap-icons.css';
+
+ul {
+  list-style-type: none;
+}
+
+input:disabled {
+  background-color: rgba(105, 105, 105, 0);
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+@media (max-width: 575.98px) {
+  .row > * {
+    width: 100;
+  }
+  .col-sm-1 {
+    width: 10%;
+  }
+  .col-sm {
+    width: 70%;
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.worker:hover {
+  transform: scale(1.03);
+}
+
+.text-about {
+  margin-top: 5%;
+}
+
+.avatar-post {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.avatar-text {
+  color: rgb(140, 140, 140);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+
+
+
+label.star:hover {
+  transform: scale(1.3);
+}
+
+
+label.star {
+  font-size: 36px;
+  color: #accc1c;
+  transition: all 0.2s;
+  cursor: pointer;
+}

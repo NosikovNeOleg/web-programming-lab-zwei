@@ -3,7 +3,7 @@
 </script>
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal_label" aria-hidden="true">
+    <div class="fade modal" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal_label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -11,7 +11,7 @@
                             <button type="button" class="btn-close" aria-label="Close" @click="closeModal"></button>
                         </div>
                         <div class="modal-body">
-                            Вы действительно хотите удалить {{ elemName }} - {{ elem.noteText }}?
+                            Вы действительно хотите удалить {{ elemName }} - {{ elem.text }}?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="closeModal">Отмена</button>

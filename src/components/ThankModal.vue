@@ -2,7 +2,6 @@
     const props = defineProps(["mark","closeModal"])
 </script>
 <template>
-    <!-- Modal -->
     <div class="fade modal" id="thank_modal" tabindex="-1" aria-labelledby="thank_modal_label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

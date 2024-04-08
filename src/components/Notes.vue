@@ -1,16 +1,15 @@
 <script setup>
 import Note from './Note.vue'
-import DeleteModal from './DeleteModal.vue';
+defineProps(['selectTodo', 'selectedTodo','notes'])
 </script>
 <template>
   <main>
-    <h2>Мои заметки</h2>
+    <h2>Содержание заметки</h2>
     <div v-for="note in notes" :key="note">
-      <Note :noteElem=note :text=note.text :selfRemove="methods.askToDelete"></Note>
+      <Note :noteElem=note :text=note.text :selfRemove="methods.removeNote"></Note>
     </div>
-
-    <button class="btn btn-primary" @click="methods.addNote()">Добавить заметку</button>
-    <DeleteModal :elemName="'заметку'" :elem="tempElem" :closeModal="methods.closeModal" :deleteFromModal="methods.removeNote"></DeleteModal>
+    <div :hidden="selectedTodo !== null" class="quote">Выберите заметку</div>
+    <button class="btn btn-primary" @click="methods.addNote()" :hidden="selectedTodo === null">Добавить заметку</button>
 
   </main>
 </template>
@@ -18,35 +17,26 @@ import DeleteModal from './DeleteModal.vue';
 export default {
   data() {
     return {
-      notes: [],
       int: 0,
-      modal: null,
       tempElem: {},
       methods: {
         addNote: () => {
-          this.notes.push((
+          this.$props.selectedTodo.notes.push((
             {
               toRemove: false,
-              noteText: "Новая заметка"
+              text: "Новая заметка"
             }
           ))
         },
 
         removeNote: (elem) => {
           elem.toRemove = true
-          this.modal.hide();
           this.methods.updateNotes()
         },
         updateNotes: () => {
-          this.notes = this.notes.filter((el) => {
+          this.$props.selectedTodo.notes = this.$props.selectedTodo.notes.filter((el) => {
             return !el.toRemove
           })
-        },
-        askToDelete: (elem) => {
-          this.tempElem = elem
-          this.modal = new bootstrap.Modal('#delete_modal')
-          
-          this.modal.show()
         },
         closeModal: () => {
           this.modal.hide();

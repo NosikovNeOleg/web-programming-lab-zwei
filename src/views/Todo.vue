@@ -5,12 +5,35 @@ import TodoList from '../components/TodoList.vue'
 <template>
     <main class="container">
         <div class="row">
-            <TodoList class="col-sm-5"></TodoList>
-            <div class="col-sm-2 vr .d-none .d-sm-block"></div>
-            <Notes class="col-sm-5"></Notes>
+            <TodoList :selectTodo="methods.selectTodo" :selectedTodo="selectedTodo" class="col-sm-5"></TodoList>
+            <div class=".d-sm-block col-sm-2 .d-none vr"></div>
+            <Notes :selectedTodo="selectedTodo" :notes="methods.getNotes(selectedTodo)" class="col-sm-5"></Notes>
         </div>
     </main>
 </template>
 <script>
-// Здесь исходный код компонента
+export default {
+    data() {
+        return {
+            selectedTodo: null,
+            methods: {
+                selectTodo: (todo) => {
+                    if (this.selectedTodo === todo) {
+                        this.selectedTodo = null
+                    } else {
+                        console.log(todo)
+                        this.selectedTodo = todo;
+                    }
+            },
+                getNotes: (todo) => {
+                    if (todo){
+                        return todo.notes;
+                    } else {
+                        return [];
+                    }
+                }
+        }
+        }
+    }
+}
 </script>

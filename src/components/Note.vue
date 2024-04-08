@@ -2,14 +2,14 @@
 defineProps(['selfRemove', 'noteElem'])
 </script>
 <template>
-    <div class="row shadow rounded my-3">
+    <div class="shadow my-3 rounded row">
         <input class="col-sm-1" type="checkbox" :disabled=isEdit>
-        <textarea class="col-sm"  rows="1" type="text" name="noteText" v-model="noteText" :disabled=!isEdit
-            v-on:change="$props.noteElem.noteText = this.noteText"></textarea>
-        <button class="col-sm-1 btn btn-warning bi-pencil" @click="isEdit = !isEdit" :hidden=isEdit></button>
-        <button class="col-sm-1 btn btn-success bi-check-lg" @click="isEdit = !isEdit" :hidden=!isEdit></button>
-        <button class="col-sm-1 btn btn-danger bi-slash-circle" :disabled=isEdit
-            @click="selfRemove($props.noteElem)"></button>
+        <input class="col-sm" type="text" name="noteText" v-model="noteText" :disabled=!isEdit
+            v-on:change="$props.noteElem.noteText = this.noteText"/>
+        <button class="col-sm-1 bi-pencil btn btn-warning" @click="isEdit = !isEdit" :hidden=isEdit></button>
+        <button class="col-sm-1 bi-check-lg btn btn-success" @click="isEdit = !isEdit" :hidden=!isEdit></button>
+        <button class="col-sm-1 bi-slash-circle btn btn-danger" :disabled=isEdit
+            @click="selfRemove(noteElem)"></button>
     </div>
 </template>
 <script>
@@ -18,7 +18,7 @@ export default {
         return {
             isEdit: false,
             modal: null,
-            noteText: this.$props.noteElem.noteText
+            noteText: this.$props.noteElem.text,
         }
     }
 }

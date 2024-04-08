@@ -26,6 +26,7 @@ import ThankModal from '../components/ThankModal.vue';
       </label>
     </div>
   </div>
+  <span class="justify-content-md-center row">{{ methods.getTextMark(mark) }}</span>
   <ThankModal :mark="mark" :closeModal="methods.closeModal"></ThankModal>
   
 
@@ -50,6 +51,7 @@ import ThankModal from '../components/ThankModal.vue';
                     star.classList.add("bi-star")
                     star.classList.remove("bi-star-fill")
                   }
+                  document.getElementById("star" + iter).checked = false;
                 } 
                 setTimeout(() => {
                   this.modal = new bootstrap.Modal('#thank_modal')
@@ -58,6 +60,15 @@ import ThankModal from '../components/ThankModal.vue';
               },
               closeModal: () => {
                 this.modal.hide();
+              },
+              getTextMark: (mark) => {
+                switch (mark){
+                  case "1" : return "Ужасно"
+                  case "2" : return "Плохо"
+                  case "3" : return "Удовлетворительно"
+                  case "4" : return "Хорошо"
+                  case "5" : return "Отлично!"
+                }
               }
             }
         }
